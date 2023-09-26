@@ -2,6 +2,7 @@ const express = require('express')
 const cors = require('cors')
 const app = express()
 // In order to get the body content of the request
+app.use(express.static('dist'))
 app.use(express.json())
 app.use(cors())
 
