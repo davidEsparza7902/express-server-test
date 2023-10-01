@@ -30,7 +30,6 @@ app.use(express.static('build'))
 app.use(express.json())
 app.use(cors())
 app.use(requestLogger)
-app.use(errorHandler)
 
 // GET all Notes
 app.get('/api/notes', async (req, res) => {
@@ -73,7 +72,6 @@ app.post('/api/notes', async (request, response, next) => {
     response.json(savedNote)
   } catch (error) {
     next(error)
-    /* response.status(500).json({ error: 'Internal Server Error' }) */
   }
 })
 
@@ -103,6 +101,7 @@ app.put('/api/notes/:id', async (request, response, next) => {
   }
 })
 
+app.use(errorHandler)
 const PORT = process.env.PORT
 
 app.listen(PORT, () => {
